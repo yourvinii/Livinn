@@ -4,9 +4,6 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const path = require("path");
 
-
-
-
 const MONGO_URL = "mongodb://127.0.0.1:27017/livinn";
 
 main()
@@ -22,12 +19,11 @@ async function main() {
 }
 
 app.set("view engine", "ejs");
-app.set("views",path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
   res.send("Hell I'am root");
 });
-
 
 // Index Route
 app.get("/listings", async (req, res) => {
@@ -35,14 +31,25 @@ app.get("/listings", async (req, res) => {
   res.render("listings/index.ejs", { allLinstings });
 });
 
-// Show Route
+// New Route
 
-app.get("/listings/:id",async (req, res)=>{
-  let {id} = req.params;
-  const listing = await Listing.findById(id);
-  res.render("listings/show.ejs", {listing})
+app.get("/listings/new",(req, res)=>{
+  res.render("listings/new.ejs")
 })
 
+
+
+
+
+
+
+// Show Route
+
+app.get("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("listings/show.ejs", { listing });
+});
 
 app.listen("8080", () => {
   console.log("App is listening on port 8080");
