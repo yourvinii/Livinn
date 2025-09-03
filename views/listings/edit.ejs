@@ -9,7 +9,7 @@
 
 <body>
 
-  <form method="POST" accept="/listings/<%= listing._id  %>?_method=PUT">
+  <form method="POST" action="/listings/<%= listing._id  %>?_method=PUT">
     <input type="text" name="listing[title]" value="<%= listing.title  %>">
     <br>
     <br>

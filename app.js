@@ -5,6 +5,7 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 
+
 const MONGO_URL = "mongodb://127.0.0.1:27017/livinn";
 
 main()
@@ -65,7 +66,22 @@ app.get("/listings/:id/edit", async (req, res) => {
   res.render("listings/edit.ejs", { listing });
 });
 
+//Update Route
 
+app.put("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  res.redirect("/listings");
+});
+
+// Delete listing
+
+app.delete("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  let deletedListing = await Listing.findByIdAndDelete(id);
+  console.log(deletedListing);
+  res.redirect("/listings");
+});
 
 app.listen("8080", () => {
   console.log("App is listening on port 8080");
