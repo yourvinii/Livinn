@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout("/layouts/Boilerplate") %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Livinn</title>
-</head>
+  <body>
 
-<body>
-  <h3>All listings</h3>
-  <form method="GET" action="/listings/new">
-    <button>Create New Listing</button>
-  </form>
-  <% for(let listing of allLinstings ) {%>
-    <ul>
-      <a href="/listings/<%= listing._id  %>">
-        <%= listing.title %>
-      </a>
-    </ul>
-    <% } %>
+    <h3>All listings</h3>
+    <!-- <form method="GET" action="/listings/new">
+      <button>Create New Listing</button>
+    </form> -->
+    <% for(let listing of allLinstings ) {%>
+      <ul>
+        <a href="/listings/<%= listing._id  %>">
+          <%= listing.title %>
+        </a>
+      </ul>
+      <% } %>
 
-</body>
-
-</html>
+  </body>
